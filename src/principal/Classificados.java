@@ -28,63 +28,25 @@ public class Classificados {
         Anuncios colA = new Anuncios();
         
         int porta = 1234;
-        String host = "10.0.4.68";        
+        String host = "192.168.0.103";        
         Socket s = new Socket(host,porta);
 		OutputStream  saida1 = s.getOutputStream();
 		ObjectOutputStream saida = new ObjectOutputStream(saida1);
 		      
-        
         col.lerDoXML();
-        colA.lerDoXML();
-        
-        try {
-        		saida.writeObject(colA);
-			saida.flush();
-			Thread.sleep (1000); 
-        } catch (Exception e) {
-        		System.out.println(e.getMessage());
-        }
-        
+        colA.lerDoXML();      
             
-            int op = 1;
-            while(op != 0){
-	            print_menu();
-	            
-	            Scanner inteiro = new Scanner(System.in); 
-	            op = leInteiro(inteiro);
-	            
-                switch(op){
-                    case 1: op1(col, saida);
-                    break;
-                    case 2: op2(col);
-                    break;
-                    case 3: op3(col);
-                    break;
-                    case 4: op4(col);
-                    break;
-                    case 5: op5(col);
-                    break;
-                    case 6: op6(colA, col);
-                    break;
-                    case 7: op7(colA, col);
-                    break;
-                    case 8: op8(colA);
-                    break;
-                    case 9: op9(colA);
-                    break;
-                    case 10: op10(colA);
-                    break;
-                    case 11: op11(colA);
-                    break;
-                    case 12: op12(colA, col);
-                    break;
-                    case 13: op13(colA);
-                    break;
-                    default:
-                    break;
-                }	
-            }
+        int op = 1;
+        while(op != 0){
+            print_menu();
+            
+            Scanner inteiro = new Scanner(System.in); 
+            op = leInteiro(inteiro);
+            
+            realizar_operacao(op, colA, col, saida);
         }
+    }
+    
     public static void op1(Pessoas col, ObjectOutputStream saida) throws Exception{	
         Scanner corda = new Scanner(System.in);
         Scanner inteiro = new Scanner(System.in);
@@ -164,6 +126,13 @@ public class Classificados {
             }
             
             col.salvaEmXML();
+            try {
+    			saida.writeObject(col);
+    			saida.flush();
+    			Thread.sleep (1000);
+            } catch (Exception e) {
+            		System.out.println(e.getMessage());
+            }
             
             try {
 	            	saida.writeObject(col);
@@ -243,7 +212,7 @@ public class Classificados {
     }
     
     
-    public static void op6(Anuncios colA, Pessoas col) throws Exception{
+    public static void op6(Anuncios colA, Pessoas col, ObjectOutputStream saida) throws Exception{
         Scanner corda = new Scanner(System.in);
         Scanner flo = new Scanner(System.in);
             int r = 0;
@@ -274,6 +243,13 @@ public class Classificados {
 	                Anuncio a = new Anuncio(ranunciante, nome, tipo, descricao, preco);
 	                colA.adicionarAnuncio(a);
 	                colA.salvaEmXML();
+	                try {
+	            		saida.writeObject(colA);
+	        			saida.flush();
+	        			Thread.sleep (1000);
+	                } catch (Exception e) {
+	                		System.out.println(e.getMessage());
+	                }
 	                System.out.println("::: Digite 1 para adicionar ou 0 para Menu :::");
 	                Scanner inteiro = null;                
 	                r = leInteiro(inteiro);
@@ -378,7 +354,7 @@ public class Classificados {
     }
     
     
-    public static void op12(Anuncios colA, Pessoas col) throws Exception{
+    public static void op12(Anuncios colA, Pessoas col, ObjectOutputStream saida) throws Exception{
         Scanner corda = new Scanner(System.in);
         System.out.println(":::::::::::::::::: Remover anúncio pelo produto e anunciate ::::::::::::::::::"); 
         System.out.println("::                                                                          ::");          
@@ -393,6 +369,13 @@ public class Classificados {
         	        System.out.println(":::::::::::::::::::::::::::::::::::::::::::::::::::::::;;:::::::::::::::::::::");
         			colA.removePeloProdutoAnuciante(produto, anunciante);
         			colA.salvaEmXML();
+        			try {
+        	    		saida.writeObject(colA);
+        				saida.flush();
+        				Thread.sleep (1000);
+        	        } catch (Exception e) {
+        	        		System.out.println(e.getMessage());
+        	        }
         			System.out.println("Produto removido com sucesso!");
         		}catch(Exception e) {
         			System.out.println(e.getMessage());
@@ -443,25 +426,58 @@ public class Classificados {
     }
     
     private static void print_menu() {
-    		System.out.println("::::::::::::::::::::::::::::: MENU ::::::::::::::::::::::::::::::::::");
+    	System.out.println("::::::::::::::::::::::::::::: MENU ::::::::::::::::::::::::::::::::::");
         System.out.println("::                                                                 ::");
         System.out.println("::   1 ->> Cadastrar pessoa                                        ::");
-        System.out.println("::   2 ->> Pesquisa pessoa pelo nome de usuário                    ::");
+        System.out.println("::   2 ->> Pesquisa pessoa pelo nome de usuario                    ::");
         System.out.println("::   3 ->> Pesquisa pessoa pelo e-mail                             ::");
         System.out.println("::   4 ->> Listar pessoas cadastrados                              ::");
         System.out.println("::   5 ->> Obter informacoes de uma pessoa cadastrada              ::");
         System.out.println("::                                                                 ::"); 
-        System.out.println("::   6 ->> Cadastrar anúncio                                       ::");
-        System.out.println("::   7 ->> Pesquisar anúncio pelo anunciante                       ::");
-        System.out.println("::   8 ->> Pesquisar anúncio pelo produto                          ::");
-        System.out.println("::   9 ->> Pesquisar anúncio por preço                             ::");
-        System.out.println("::   10 ->> Pesquisar anúncio por preço maior                      ::");
-        System.out.println("::   11 ->> Pesquisar anúncio por preço menor                      ::");
-        System.out.println("::   12 ->> Remover anúncio pelo produto e anunciate               ::");
+        System.out.println("::   6 ->> Cadastrar anuncio                                       ::");
+        System.out.println("::   7 ->> Pesquisar anuncio pelo anunciante                       ::");
+        System.out.println("::   8 ->> Pesquisar anuncio pelo produto                          ::");
+        System.out.println("::   9 ->> Pesquisar anuncio por preco                             ::");
+        System.out.println("::   10 ->> Pesquisar anuncio por preco maior                      ::");
+        System.out.println("::   11 ->> Pesquisar anuncio por preco menor                      ::");
+        System.out.println("::   12 ->> Remover anuncio pelo produto e anunciate               ::");
         System.out.println("::   13 ->> Listar todos os anuncios                               ::");
         System.out.println("::                                                                 ::");      
         System.out.println("::   0 ->> Para sair                                               ::");
         System.out.println("::                                                                 ::");
         System.out.println(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+    }
+    
+    private static void realizar_operacao(int op, Anuncios colA, Pessoas col, ObjectOutputStream saida) throws Exception {
+    	switch(op){
+        case 1: op1(col, saida);
+        break;
+        case 2: op2(col);
+        break;
+        case 3: op3(col);
+        break;
+        case 4: op4(col);
+        break;
+        case 5: op5(col);
+        break;
+        case 6: op6(colA, col, saida);
+        break;
+        case 7: op7(colA, col);
+        break;
+        case 8: op8(colA);
+        break;
+        case 9: op9(colA);
+        break;
+        case 10: op10(colA);
+        break;
+        case 11: op11(colA);
+        break;
+        case 12: op12(colA, col, saida);
+        break;
+        case 13: op13(colA);
+        break;
+        default:
+        break;
+    }	
     }
 }

@@ -2,6 +2,6 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="/Users/ifpb/Downloads/xstream-1.4.10/lib/xstream-1.4.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/julio/Desktop/xstream-distribution-1.4.10-bin/xstream-1.4.10/lib/xstream-1.4.10.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

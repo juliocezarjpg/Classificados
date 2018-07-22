@@ -163,9 +163,9 @@ public class Anuncios implements Serializable {
                 anuncios = (ArrayList<Anuncio>) xStream.fromXML(input); 
 
                 input.close(); 
-                for (Anuncio anuncio : anuncios) { 
-                        System.out.println(anuncio); 
-                } 
+//                for (Anuncio anuncio : anuncios) { 
+//                        System.out.println(anuncio); 
+//                } 
 
             } catch (IOException ex) { 
                     ex.printStackTrace(); 

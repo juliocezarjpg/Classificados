@@ -31,20 +31,29 @@ public class Servidor  {
 			Thread.sleep(5000);
 			
 			
-			System.out.println("Servidor recebeu conexao. Numero da conexao: " + numero);
+			//System.out.println("Servidor recebeu conexao. Numero da conexao: " + numero);
 			
 			endereco_remoto = conexao.getInetAddress();
 			porta_remota    = conexao.getPort();
 			
-			System.out.println("Nome da maquina remota: " + endereco_remoto.getHostName());
-			System.out.println("IP da maquina remota: " + endereco_remoto.getHostAddress());
-			System.out.println("Porta maquina remota: " + porta_remota);
+			//System.out.println("Nome da maquina remota: " + endereco_remoto.getHostName());
+			//System.out.println("IP da maquina remota: " + endereco_remoto.getHostAddress());
+			//System.out.println("Porta maquina remota: " + porta_remota);
 			
 			try {
 				Anuncios a=(Anuncios) entrada.readObject();
-				System.out.println(a);
+				//System.out.println(a);
 				a.salvaEmXML();
+				//System.out.println("Anuncios salvo com sucesso");
 			    //System.out.println((String)entrada.readObject());
+			}catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
+			try {
+				Pessoas a=(Pessoas) entrada.readObject();
+				//System.out.println(a);
+				a.salvaEmXML();
+				//System.out.println("Pessoas salvas com sucesso");
 			}catch(Exception e) {
 				System.out.println(e.getMessage());
 			}

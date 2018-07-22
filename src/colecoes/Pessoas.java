@@ -117,9 +117,9 @@ public class Pessoas implements Serializable {
                 //System.out.println(lista2); 
             }
             //System.out.println(lista2);
-            for (Pessoa pessoa : pessoas) { 
-                System.out.println(pessoa); 
-            } 
+//            for (Pessoa pessoa : pessoas) { 
+//                System.out.println(pessoa); 
+//            } 
         } catch (IOException ex) { 
         } 
     } 	 
