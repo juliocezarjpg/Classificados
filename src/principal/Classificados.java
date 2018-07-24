@@ -1,7 +1,7 @@
 /*
  * Projeto de redes de Computadores turma 2018.1.
  * Diciplina POO Java.
- * Professor Francisco PetrÃ´nio.
+ * Professor Francisco Petrônio.
  * Classe Principal
  */
 package principal;
@@ -27,8 +27,8 @@ public class Classificados {
         Pessoas col = new Pessoas();
         Anuncios colA = new Anuncios();
         
-        int porta = 1234;
-        String host = "192.168.0.103";        
+        int porta = 1236;
+        String host = "192.168.0.102";        
         Socket s = new Socket(host,porta);
 		OutputStream  saida1 = s.getOutputStream();
 		ObjectOutputStream saida = new ObjectOutputStream(saida1);
@@ -46,7 +46,13 @@ public class Classificados {
             realizar_operacao(op, colA, col, saida);
         }
     }
-    
+    /**
+     * 
+     * @param col
+     * @param saida
+     * @throws Exception
+     * Metodos para o Menu principal
+     */
     public static void op1(Pessoas col, ObjectOutputStream saida) throws Exception{	
         Scanner corda = new Scanner(System.in);
         Scanner inteiro = new Scanner(System.in);
@@ -82,7 +88,7 @@ public class Classificados {
                 email = leString(corda);                
                 System.out.println("::  Digite o telefone:                                            ::");
                 telefone = leString(corda);                
-                System.out.println("::  Digite o nome de usuÃ¡rio:                                     ::");
+                System.out.println("::  Digite o nome de usuário:                                     ::");
                 usuario = leString(corda);                 
                 System.out.println("::  Digite a senha:                                               ::");
                 senha = leString(corda); 
@@ -146,9 +152,9 @@ public class Classificados {
     }
     public static void op2(Pessoas col){
         Scanner corda = new Scanner(System.in);
-        System.out.println(":::::::::::::::::::: Pesquisa cliente pelo nome de usuÃ¡rio :::::::::::::::::::"); 
+        System.out.println(":::::::::::::::::::: Pesquisa cliente pelo nome de usuário :::::::::::::::::::"); 
         System.out.println("::                                                                          ::");          
-        System.out.println("::  Digite o username do usuÃ¡rio a ser pesquisado:                          ::");
+        System.out.println("::  Digite o username do usuário a ser pesquisado:                          ::");
         System.out.println("::                                                                          ::");       
         String username = leString(corda);
         try {
@@ -232,11 +238,11 @@ public class Classificados {
 	            		Pessoa ranunciante = col.pesquisaPeloUsername(anunciante);
 	            		System.out.println("::  Digite o nome do produto:                                      ::");
 	                nome = leString(corda);
-	                System.out.println("::  Digite o tipo do anÃºncio:                                      ::");
+	                System.out.println("::  Digite o tipo do anúncio:                                      ::");
 	                tipo = leString(corda);                
-	                System.out.println("::  Digite a descriÃ§Ã£o:                                            ::");
+	                System.out.println("::  Digite a descrição:                                            ::");
 	                descricao = leString(corda);                
-	                System.out.println("::  Digite o preÃ§o:                                                ::");
+	                System.out.println("::  Digite o preço:                                                ::");
 	                preco = leFloat(flo);                 
 	                System.out.println(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");                        
 	  
@@ -265,7 +271,7 @@ public class Classificados {
     
     public static void op7(Anuncios colA, Pessoas col) throws Exception{
         Scanner corda = new Scanner(System.in);
-        System.out.println(":::::::::::::::::: Pesquisar anÃºncio pelo anunciante :::::::::::::::::::::::::"); 
+        System.out.println(":::::::::::::::::: Pesquisar anúncio pelo anunciante :::::::::::::::::::::::::"); 
         System.out.println("::                                                                          ::");          
         System.out.println("::  Digite o username do anunciante:                                            ::");
         System.out.println("::                                                                          ::");       
@@ -287,7 +293,7 @@ public class Classificados {
     
     public static void op8(Anuncios colA){
         Scanner corda = new Scanner(System.in);
-        System.out.println(":::::::::::::::::::::: Pesquisar anÃºncio pelo produto ::::::::::::::::::::"); 
+        System.out.println(":::::::::::::::::::::: Pesquisar anúncio pelo produto ::::::::::::::::::::"); 
         System.out.println("::                                                                      ::");          
         System.out.println("::  Digite o nome do produto:                                           ::");
         System.out.println("::                                                                      ::");       
@@ -305,9 +311,9 @@ public class Classificados {
     
     public static void op9(Anuncios colA) throws Exception{
         Scanner flo = new Scanner(System.in);
-            System.out.println("::::::::::::::: Pesquisar anÃºncio por preÃ§o ::::::::::::::::::::::::");
+            System.out.println("::::::::::::::: Pesquisar anúncio por preço ::::::::::::::::::::::::");
             System.out.println("::                                                                ::");                
-            System.out.println("::  Digite o preÃ§o que deseja para pesquisa:                      ::");
+            System.out.println("::  Digite o preço que deseja para pesquisa:                      ::");
             float preco = leFloat(flo);
             System.out.println("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
         try {
@@ -322,9 +328,9 @@ public class Classificados {
     
     public static void op10(Anuncios colA){
         Scanner flo = new Scanner(System.in);
-            System.out.println(":::::::::::: Pesquisar anÃºncio por preÃ§o maior :::::::::::::::::::::");
+            System.out.println(":::::::::::: Pesquisar anúncio por preço maior :::::::::::::::::::::");
             System.out.println("::                                                                ::");                
-            System.out.println("::  Digite o maior preÃ§o para pesquisa:                           ::");
+            System.out.println("::  Digite o maior preço para pesquisa:                           ::");
             float preco = leFloat(flo);
             System.out.println("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
         try {
@@ -339,9 +345,9 @@ public class Classificados {
     
     public static void op11(Anuncios colA){
         Scanner flo = new Scanner(System.in);
-            System.out.println(":::::::::::: Pesquisar anÃºncio por preÃ§o menor :::::::::::::::::::::");
+            System.out.println(":::::::::::: Pesquisar anúncio por preço menor :::::::::::::::::::::");
             System.out.println("::                                                                ::");                
-            System.out.println("::  Digite o menor preÃ§o para pesquisa:                           ::");
+            System.out.println("::  Digite o menor preço para pesquisa:                           ::");
             float preco = leFloat(flo);
             System.out.println("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
         try {
@@ -356,9 +362,9 @@ public class Classificados {
     
     public static void op12(Anuncios colA, Pessoas col, ObjectOutputStream saida) throws Exception{
         Scanner corda = new Scanner(System.in);
-        System.out.println(":::::::::::::::::: Remover anÃºncio pelo produto e anunciate ::::::::::::::::::"); 
+        System.out.println(":::::::::::::::::: Remover anúncio pelo produto e anunciate ::::::::::::::::::"); 
         System.out.println("::                                                                          ::");          
-        System.out.println("::  Digite o username do anÃºnciante:                                            ::");
+        System.out.println("::  Digite o username do anúnciante:                                            ::");
         String nome = leString(corda);
         
         try {
@@ -397,14 +403,14 @@ public class Classificados {
         leString(corda);
     }
     /**
-     * MÃ©tudos para garantir a leitura do teclado
+     * Métudos para garantir a leitura do teclado
      * @param in
      * @return 
      */
     private static int leInteiro(Scanner in) {
         while(!in.hasNextInt()) {
                 in.nextLine();
-                System.out.print("Tipo de dado invÃ¡lido. Digite um inteiro: ");
+                System.out.print("Tipo de dado inválido. Digite um inteiro: ");
         }
         int r = in.nextInt();
         in.nextLine(); 
@@ -418,13 +424,15 @@ public class Classificados {
 		while(!flo.hasNextFloat())
                 {
 			flo.nextLine();
-			System.out.print("Tipo de dado invÃ¡lido. Digite um valor real: ");
+			System.out.print("Tipo de dado inválido. Digite um valor real: ");
 		}
 		float r = flo.nextFloat();
 		flo.nextLine();
 		return r;
     }
-    
+    /**
+     * Menu principal
+     */
     private static void print_menu() {
     	System.out.println("::::::::::::::::::::::::::::: MENU ::::::::::::::::::::::::::::::::::");
         System.out.println("::                                                                 ::");

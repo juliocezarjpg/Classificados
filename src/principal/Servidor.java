@@ -8,7 +8,7 @@ import java.io.*;
 
 public class Servidor  {
 
-	public final static int DEFAULT_PORT = 1234;
+	public final static int DEFAULT_PORT = 1236;
 	
 	public static void main(String[] args) throws Exception {
 	    int porta =  DEFAULT_PORT;
